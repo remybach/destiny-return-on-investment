@@ -1,6 +1,6 @@
 This readme is mostly for posterity.
 
-To deploy this folder to `gh-pages`, set up the following as a :
+To deploy this folder to `gh-pages`, set up the following as an alias:
 
 ```
 #!/bin/sh
