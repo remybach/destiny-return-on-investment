@@ -1,4 +1,2 @@
 node_modules/
-build/bundle.js*
-build/style.css
 yarn.lock

@@ -1,7 +1,7 @@
 var config = {
-    entry: [__dirname + '/app/scripts/main.jsx'],
+    entry: [__dirname + '/app/main.jsx'],
     output: {
-        filename: 'bundle.js'
+        filename: 'build/bundle.js'
     },
 
     devtool: "source-map",
@@ -14,9 +14,17 @@ var config = {
         query: {
           presets: ['es2015', 'react']
         }
+      }, {
+        test: /\.scss$/,
+        use: [{
+          loader: "style-loader"
+        }, {
+          loader: "css-loader"
+        }, {
+          loader: "sass-loader"
+        }]
       }]
     }
 };
-
 
 module.exports = config;

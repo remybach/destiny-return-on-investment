@@ -1,0 +1,47 @@
+html, body {
+	font-family: 'Roboto', Helvetica, Arial
+}
+
+header {
+	p {
+		font-size: 1.2rem;
+	}
+}
+
+.container {
+	padding: 0 20px;
+}
+
+.form-section {
+	margin-bottom: 10px;
+}
+
+.price-buttons {
+	margin-left: 10px;
+}
+
+.loading-overlay {
+	background: rgba(255, 255, 255, 0.75);
+	display: none;
+	height: 100%;
+	justify-content: space-around;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 999;
+
+	&.is-visible {
+		display: flex;
+	}
+}
+.loading-overlay__indicator {
+	align-self: center;
+}
+
+.card {
+	margin: 30px 0;
+}
+
+// Props to http://tholman.com/github-corners for this.
+.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}

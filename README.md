@@ -14,7 +14,7 @@ Navigate to <http://127.0.0.1:1234> in your browser.
 
 ## Contributing - Adding other regions/prices
 
-You can help add prices for other regions/currencies by updating the [prices.js](app/scripts/prices.js) file and submitting a PR.
+You can help add prices for other regions/currencies by updating the [prices.js](app/prices.js) file and submitting a PR.
 
 ## License
 

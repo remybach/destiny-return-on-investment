@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "styles": "node-sass app/styles/style.scss build/style.css",
-    "styles_dev": "node-sass --watch app/styles/style.scss build/style.css",
     "webpack_dev": "webpack-dev-server --progress --colors --content-base build --host 127.0.0.1 --port 1234",
-    "dev": "npm run styles_dev | npm run webpack_dev",
-    "start": "npm run styles | npm run webpack_dev"
+    "webpack_prod": "webpack -p --progress --colors",
+    "dev": "npm run webpack_dev",
+    "prod": "npm run webpack_prod",
+    "start": "webpack --progress --colors"
   },
   "author": "",
   "license": "ISC",
@@ -30,8 +30,11 @@
     "babel-loader": "^6.0.1",
     "babel-preset-es2015": "^6.1.2",
     "babel-preset-react": "^6.1.2",
+    "css-loader": "^0.28.0",
     "node-sass": "^4.5.2",
     "react-dom": "^15.4.2",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.16.1",
     "webpack": "^2.3.3"
   }
 }
