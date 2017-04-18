@@ -181,22 +181,16 @@ class AppComponent extends React.Component {
         
           <CardTitle title="Cost Details" />
 
-          <CardText>
-            <div className="form-section">
-              Select one of the following currencies to auto-populate the fields with
-              (or just put in your own values). Note that you can change the values to suit
-              what you paid in case (for example) you managed to get it second hand.
-            </div>
-
-            <div className="form-section">
-              <strong>NOTE:</strong> Clicking one of these buttons simply overwrites what&rsquo;s
-              in these price fields.
-            </div>
+          <CardText className="card-text">
 
             <h4>
-              Auto-populate fields with:
+              Auto-populate fields with release day prices<sup>&dagger;</sup>:
               <PriceButtons onCurrencyClick={ this.handleCurrencyClick.bind(this) } activeCurrency={ this.state.activeCurrency } />
             </h4>
+
+            <div className="form-section">
+              <small>&dagger; You can update the fields with your own amounts if what you paid is different.</small>
+            </div>
 
             <div className="form-section">
               <TextField
