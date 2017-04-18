@@ -6,7 +6,6 @@ import {
 
 import classNames from 'classnames';
 
-
 class Loader extends React.Component {
 
   constructor(props) {

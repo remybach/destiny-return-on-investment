@@ -165,26 +165,6 @@ class AppComponent extends React.Component {
         { valuePerHourSection }
 
         <Card className="card">
-          <CardTitle title="Account Details" />
-
-          <CardText>
-            <div className="form-section">
-              <RadioButtonGroup
-                name="console"
-                onChange={ (e, val) => { this.setState({ console: val }) } }>
-                <RadioButton value="2" label="PS4" />
-                <RadioButton value="1" label="XBOX" />
-              </RadioButtonGroup>
-            </div>
-
-            <div className="form-section">
-              <TextField
-                floatingLabelText="username"
-                fullWidth={ true }
-                floatingLabelFixed={ true }
-                onChange={ (e, val) => { this.setState({ username: val }) } } />
-            </div>
-          </CardText>
         
           <CardTitle title="Cost Details" />
 
@@ -203,6 +183,7 @@ class AppComponent extends React.Component {
               <TextField
                 name="price-vanilla"
                 value={ this.state.pricing.vanilla }
+                type="number"
                 onChange={ this.handleChange.bind(this) }
                 floatingLabelText="Vanilla"
                 fullWidth={ true }
@@ -214,6 +195,7 @@ class AppComponent extends React.Component {
               <TextField
                 name="price-tdb"
                 value={ this.state.pricing.tdb }
+                type="number"
                 onChange={ this.handleChange.bind(this) }
                 floatingLabelText="The Dark Below"
                 fullWidth={ true }
@@ -225,6 +207,7 @@ class AppComponent extends React.Component {
               <TextField
                 name="price-how"
                 value={ this.state.pricing.how }
+                type="number"
                 onChange={ this.handleChange.bind(this) }
                 floatingLabelText="House of Wolves"
                 fullWidth={ true }
@@ -236,6 +219,7 @@ class AppComponent extends React.Component {
               <TextField
                 name="price-ttk"
                 value={ this.state.pricing.ttk }
+                type="number"
                 onChange={ this.handleChange.bind(this) }
                 floatingLabelText="The Taken King"
                 fullWidth={ true }
@@ -247,6 +231,7 @@ class AppComponent extends React.Component {
               <TextField
                 name="price-roi"
                 value={ this.state.pricing.roi }
+                type="number"
                 onChange={ this.handleChange.bind(this) }
                 floatingLabelText="Rise of Iron"
                 fullWidth={ true }
@@ -257,6 +242,7 @@ class AppComponent extends React.Component {
             <div className="form-section">
               <TextField
                 name="price-micro"
+                type="number"
                 floatingLabelText="Amount spent on micro-transactions"
                 fullWidth={ true }
                 floatingLabelFixed={ true }
@@ -266,10 +252,32 @@ class AppComponent extends React.Component {
             <div className="form-section">
               <TextField
                 name="price-other"
+                type="number"
                 floatingLabelText="Other costs you want to include (Bungie store purchases, etc.)"
                 fullWidth={ true }
                 floatingLabelFixed={ true }
                 ref={(input) => { this.otherInput = input; }} />
+            </div>
+          </CardText>
+
+          <CardTitle title="Account Details" />
+
+          <CardText>
+            <div className="form-section">
+              <RadioButtonGroup
+                name="console"
+                onChange={ (e, val) => { this.setState({ console: val }) } }>
+                <RadioButton value="2" label="PS4" />
+                <RadioButton value="1" label="XBOX" />
+              </RadioButtonGroup>
+            </div>
+
+            <div className="form-section">
+              <TextField
+                floatingLabelText="username"
+                fullWidth={ true }
+                floatingLabelFixed={ true }
+                onChange={ (e, val) => { this.setState({ username: val }) } } />
             </div>
           </CardText>
 
