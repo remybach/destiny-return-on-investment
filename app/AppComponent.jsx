@@ -92,13 +92,15 @@ class AppComponent extends React.Component {
           });
         } else {
           const hoursPlayed = data.Response.totalTimePlayed / (60 * 60);
-          const console = data.Response[this.state.console === '2' ? 'playstation' : 'xbox'];
+          const consoleName = this.state.console === '2' ? 'playstation' : 'xbox';
+          const console = data.Response[consoleName];
 
           this.setState({
             apiData: {
               icon: `https://www.bungie.net${ console.iconPath }`,
               displayName: console.displayName,
-              clan: console.clan ? `${ console.clan.name } [${ console.clan.tag }]` : null
+              clan: console.clan ? `${ console.clan.name } [${ console.clan.tag }]` : null,
+              consoleName
             },
             isLoading: false,
             total: this.currencyValue(total),
@@ -142,6 +144,11 @@ class AppComponent extends React.Component {
             subtitle={ this.state.apiData.clan }
             avatar={ this.state.apiData.icon } />
           <CardTitle title={ `You’ve spent a total of ${ this.state.total }, which equates to ${ this.state.valuePerHour } per hour playing Destiny.` } />
+          <CardText>
+            <a href={ `https://www.wastedondestiny.com/${ this.state.apiData.consoleName }/${ this.state.apiData.displayName }` } target="_blank">
+              Click here
+            </a> to see your number of hours on <a href="https://www.wastedondestiny.com" target="_blank">wastedondestiny.com</a>.
+          </CardText>
         </Card>
       );
     }
