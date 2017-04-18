@@ -1,7 +1,6 @@
 // *Note* in the currency where it has `%amount` is where the number will go.
 
 export default {
-
 	GBP: {
 		currency: '£%amount',
 		vanilla: 55,
@@ -21,6 +20,15 @@ export default {
 			approximateCostPerHour: '£1.60'
 		}]
 	},
+
+	// EUR: {
+	// 	currency: '€%amount',
+	// 	vanilla: 60,
+	// 	tdb: ,
+	// 	how: ,
+	// 	ttk: 40,
+	// 	roi: 
+	// },
 
 	USD: {
 		currency: '$%amount',
