@@ -47,5 +47,34 @@ header {
 	margin: 30px 0;
 }
 
+.comparisons {
+	display: none;
+
+	&.is-visible {
+		display: block;
+	}
+}
+
+.comparisons__item {
+	align-items: flex-start;
+	display: flex;
+	max-width: 500px;
+
+	.refresh-icon {
+		cursor: pointer;
+		display: inline-block;
+		flex: 24px;
+		flex-grow: 0;
+		flex-shrink: 0;
+		margin-right: 10px;
+		transition: none !important; // Have to override the inline style manually.
+
+		&:hover {
+			transform: rotate(360deg);
+			transition: transform 1s ease !important;
+		}
+	}
+}
+
 // Props to http://tholman.com/github-corners for this.
 .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}

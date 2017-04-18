@@ -14,6 +14,7 @@ import {
 import axios from 'axios';
 
 // Components
+import Comparisons from './Comparisons.jsx';
 import PriceButtons from './PriceButtons.jsx';
 import Loader from './Loader.jsx';
 
@@ -144,6 +145,7 @@ class AppComponent extends React.Component {
             subtitle={ this.state.apiData.clan }
             avatar={ this.state.apiData.icon } />
           <CardTitle title={ `You’ve spent a total of ${ this.state.total }, which equates to ${ this.state.valuePerHour } per hour playing Destiny.` } />
+          <Comparisons comparisons={ this.state.pricing.comparisons } />
           <CardText>
             <a href={ `https://www.wastedondestiny.com/${ this.state.apiData.consoleName }/${ this.state.apiData.displayName }` } target="_blank">
               Click here
