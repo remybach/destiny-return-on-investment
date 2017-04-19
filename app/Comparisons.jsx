@@ -55,15 +55,20 @@ class Comparisons extends React.Component {
     });
 
     let refreshIcon;
+    let comparisonText;
 
-    if (hasComparisons && this.props.comparisons.length > 1) {
-      refreshIcon = (<ActionCached className="refresh-icon" onClick={ this.refreshComparison.bind(this) } />);
+    if (hasComparisons) {
+      comparisonText = `${ this.props.comparisons[this.state.currentComparison].title } would provide ${ this.props.comparisons[this.state.currentComparison].approximateCostPerHour } worth of entertainment per hour.`;
+
+      if (this.props.comparisons.length > 1) {
+        refreshIcon = (<ActionCached className="refresh-icon" onClick={ this.refreshComparison.bind(this) } />);
+      }
     }
 
     let comparison = (
       <div className="comparisons__item">
         { refreshIcon }
-        { this.props.comparisons[this.state.currentComparison].title } would provide { this.props.comparisons[this.state.currentComparison].approximateCostPerHour } worth of entertainment per hour.
+        { comparisonText }
       </div>
     );
 
