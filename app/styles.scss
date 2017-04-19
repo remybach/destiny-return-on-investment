@@ -9,6 +9,8 @@ header {
 }
 
 .container {
+	margin: 0 auto;
+	max-width: 800px;
 	padding: 0 20px;
 }
 
@@ -21,7 +23,9 @@ header {
 }
 
 .price-buttons {
-	margin-left: 10px;
+	display: block;
+	margin-left: 0;
+	margin-top: 10px;
 }
 
 .loading-overlay {

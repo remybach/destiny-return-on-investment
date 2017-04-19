@@ -305,6 +305,7 @@ class AppComponent extends React.Component {
               disabled={ !this.state.console || !this.state.username }
               label="Calculate"
               primary={ true }
+              fullWidth={ true }
               onTouchTap={ this.handleCalculate.bind(this) } />
           </CardActions>
         </Card>
