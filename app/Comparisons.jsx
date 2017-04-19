@@ -21,14 +21,6 @@ class Comparisons extends React.Component {
     this.state = { currentComparison };
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps && JSON.stringify(prevProps.comparisons) !== JSON.stringify(this.props.comparisons)) {
-      this.setState({ currentComparison: 0 });
-      
-      this.setupInterval();
-    }
-  }
-
   refreshComparison() {
     let nextComparison = this.getNextComparison();
 

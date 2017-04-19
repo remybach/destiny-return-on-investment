@@ -14,6 +14,7 @@ import {
 import axios from 'axios';
 
 // Components
+import AmazonAffiliateGameLinks from './AmazonAffiliateGameLinks.jsx';
 import Comparisons from './Comparisons.jsx';
 import PriceButtons from './PriceButtons.jsx';
 import Loader from './Loader.jsx';
@@ -121,12 +122,16 @@ class AppComponent extends React.Component {
   handleCurrencyClick(pricing, activeCurrency) {
     this.setState({
       pricing: Object.assign({}, pricing),
-      activeCurrency
+      activeCurrency,
+      valuePerHour: null
     });
   }
 
   handleChange(e, value) {
-    let updated = { pricing: this.state.pricing };
+    let updated = {
+      pricing: this.state.pricing,
+      valuePerHour: null
+    };
     const field = e.currentTarget.name.replace('price-', '');
 
     updated.pricing[field] = value;
@@ -134,24 +139,34 @@ class AppComponent extends React.Component {
     this.setState(updated);
   }
 
+  clearValuePerHourSection() {
+    this.setState({
+      valuePerHour: null
+    });
+  }
+
   render() {
     let valuePerHourSection;
 
     if (this.state.valuePerHour) {
       valuePerHourSection = (
-        <Card className="card">
-          <CardHeader
-            title={ this.state.apiData.displayName }
-            subtitle={ this.state.apiData.clan }
-            avatar={ this.state.apiData.icon } />
-          <CardTitle title={ `You’ve spent a total of ${ this.state.total }, which equates to ${ this.state.valuePerHour } per hour playing Destiny.` } />
-          <Comparisons comparisons={ this.state.pricing.comparisons } />
-          <CardText>
-            <a href={ `https://www.wastedondestiny.com/${ this.state.apiData.consoleName }/${ this.state.apiData.displayName }` } target="_blank">
-              Click here
-            </a> to see your number of hours on <a href="https://www.wastedondestiny.com" target="_blank">wastedondestiny.com</a>.
-          </CardText>
-        </Card>
+        <div>
+          <Card className="card">
+            <CardHeader
+              title={ this.state.apiData.displayName }
+              subtitle={ this.state.apiData.clan }
+              avatar={ this.state.apiData.icon } />
+            <CardTitle title={ `You’ve spent a total of ${ this.state.total }, which equates to ${ this.state.valuePerHour } per hour playing Destiny.` } />
+            <Comparisons comparisons={ this.state.pricing.comparisons } />
+            <CardText>
+              <a href={ `https://www.wastedondestiny.com/${ this.state.apiData.consoleName }/${ this.state.apiData.displayName }` } target="_blank">
+                Click here
+              </a> to see your number of hours on <a href="https://www.wastedondestiny.com" target="_blank">wastedondestiny.com</a>.
+            </CardText>
+          </Card>
+
+          <AmazonAffiliateGameLinks currency={ this.state.activeCurrency } />
+        </div>
       );
     }
 
@@ -245,6 +260,7 @@ class AppComponent extends React.Component {
               <TextField
                 name="price-micro"
                 type="number"
+                onChange={ this.clearValuePerHourSection.bind(this) }
                 floatingLabelText="Amount spent on micro-transactions"
                 fullWidth={ true }
                 floatingLabelFixed={ true }
@@ -255,6 +271,7 @@ class AppComponent extends React.Component {
               <TextField
                 name="price-other"
                 type="number"
+                onChange={ this.clearValuePerHourSection.bind(this) }
                 floatingLabelText="Other costs you want to include (Bungie store purchases, etc.)"
                 fullWidth={ true }
                 floatingLabelFixed={ true }
@@ -268,7 +285,7 @@ class AppComponent extends React.Component {
             <div className="form-section">
               <RadioButtonGroup
                 name="console"
-                onChange={ (e, val) => { this.setState({ console: val }) } }>
+                onChange={ (e, val) => { this.setState({ console: val, valuePerHour: null }) } }>
                 <RadioButton value="2" label="PS4" />
                 <RadioButton value="1" label="XBOX" />
               </RadioButtonGroup>
@@ -279,7 +296,7 @@ class AppComponent extends React.Component {
                 floatingLabelText="username"
                 fullWidth={ true }
                 floatingLabelFixed={ true }
-                onChange={ (e, val) => { this.setState({ username: val }) } } />
+                onChange={ (e, val) => { this.setState({ username: val, valuePerHour: null }) } } />
             </div>
           </CardText>
 
