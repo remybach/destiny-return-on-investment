@@ -188,7 +188,7 @@ class AppComponent extends React.Component {
           <CardText className="card-text">
 
             <h4>
-              Auto-populate fields with release day prices<sup>&dagger;</sup>:
+              Pre-fill fields with release day prices<sup>&dagger;</sup>:
               <PriceButtons onCurrencyClick={ this.handleCurrencyClick.bind(this) } activeCurrency={ this.state.activeCurrency } />
             </h4>
 

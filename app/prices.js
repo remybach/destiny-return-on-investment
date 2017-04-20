@@ -26,7 +26,14 @@ export default {
 		tdb: 20,
 		how: 20,
 		ttk: 40,
-		roi: 30
+		roi: 30,
+		comparisons: [{
+			title: 'Seeing the latest blockbuster at the cinema (excluding things like travel cost/drinks/popcorn)',
+			approximateCostPerHour: '$7.20'
+		}, {
+			title: 'Renting the latest blockbuster for home viewing (streaming)',
+			approximateCostPerHour: '$2.25'
+		}]
 	}
 
 };
