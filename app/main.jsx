@@ -1,9 +1,15 @@
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import Promise from 'promise-polyfill'; 
+
+// Make Promise polyfill available globally.
+if (!window.Promise) {
+  window.Promise = Promise;
+}
+
 // Sentry logging.
 if (Raven && Raven.config) {
 	Raven.config('https://fc98b9bec330413fb130ae73c559400b@sentry.io/160665').install();
 }
-
-import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
