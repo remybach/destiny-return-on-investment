@@ -1,10 +1,7 @@
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import Promise from 'promise-polyfill'; 
+import Polyfills from './polyfills';
 
-// Make Promise polyfill available globally.
-if (!window.Promise) {
-  window.Promise = Promise;
-}
+Polyfills.init();
 
 // Sentry logging.
 if (Raven && Raven.config) {
