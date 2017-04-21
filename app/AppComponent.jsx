@@ -93,7 +93,7 @@ class AppComponent extends React.Component {
             snackbarMessage: 'Please provide your console and PSN/Xbox username.'
           });
         } else {
-          const hoursPlayed = (Number(data.Response.totalTimePlayed) + Number(data.Response.totalTimeWasted)) / (60 * 60);
+          const hoursPlayed = (Number(data.Response.totalTimePlayed || 0) + Number(data.Response.totalTimeWasted || 0)) / (60 * 60);
           const consoleName = this.state.console === '2' ? 'playstation' : 'xbox';
           const console = data.Response[consoleName];
 
