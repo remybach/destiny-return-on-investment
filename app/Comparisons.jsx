@@ -50,7 +50,7 @@ class Comparisons extends React.Component {
     let comparisonText;
 
     if (hasComparisons) {
-      comparisonText = `${ this.props.comparisons[this.state.currentComparison].title } would provide approximately ${ this.props.comparisons[this.state.currentComparison].approximateCostPerHour } worth of entertainment per hour.`;
+      comparisonText = `${ this.props.comparisons[this.state.currentComparison].title }, you spend ${ this.props.comparisons[this.state.currentComparison].approximateCostPerHour } to be entertained per hour.`;
 
       if (this.props.comparisons.length > 1) {
         refreshIcon = (<ActionCached className="refresh-icon" onClick={ this.refreshComparison.bind(this) } />);
