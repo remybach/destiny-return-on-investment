@@ -5,8 +5,8 @@ export default {
 	GBP: {
 		currency: '£%amount',
 		vanilla: 55,
-		tdb: 25,
-		how: 25,
+		tdb: 20,
+		how: 20,
 		ttk: 40,
 		roi: 24.99,
 
