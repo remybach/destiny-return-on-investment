@@ -1,3 +1,8 @@
+// Sentry logging.
+if (Raven && Raven.config) {
+	Raven.config('https://fc98b9bec330413fb130ae73c559400b@sentry.io/160665').install();
+}
+
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap
