@@ -29,7 +29,7 @@ class AmazonAffiliateGameLinks extends React.Component {
   }
 
   renderAffiliateLink(src) {
-    return (<iframe style={ this.frameStyle } marginWidth="0" marginHeight="0" scrolling="no" frameBorder="0" src={src}></iframe> );
+    return (<iframe style={ this.frameStyle } marginWidth="0" marginHeight="0" scrolling="no" frameBorder="0" src={src} key={src}></iframe> );
   }
 
   render() {

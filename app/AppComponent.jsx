@@ -272,7 +272,7 @@ class AppComponent extends React.Component {
                 name="price-other"
                 type="number"
                 onChange={ this.clearValuePerHourSection.bind(this) }
-                floatingLabelText="Other costs you want to include (Bungie store purchases, etc.)"
+                floatingLabelText="Other costs you want to include (Bungie store purchases, PS+/Xbox Live Gold etc.)"
                 fullWidth={ true }
                 floatingLabelFixed={ true }
                 ref={(input) => { this.otherInput = input; }} />
