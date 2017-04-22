@@ -12,6 +12,7 @@ import {
   TextField
 } from 'material-ui';
 import axios from 'axios';
+import classNames from 'classnames';
 
 // Components
 import AmazonAffiliateGameLinks from './AmazonAffiliateGameLinks.jsx';
@@ -23,8 +24,11 @@ require('./styles.scss');
 
 class AppComponent extends React.Component {
 
+
   constructor(props) {
     super(props);
+
+    this.CONSOLES = [ 'playstation', 'xbox' ];
 
     this.state = {
       isLoading: false,
@@ -36,12 +40,13 @@ class AppComponent extends React.Component {
         roi: ''
       },
       activeCurrency: '',
-      total: 0,
-      valuePerHour: 0,
-      console: null,
-      username: '',
+      apiData: null,
+      consoleSelectorExpanded: false,
+      selectedConsole: null,
       snackbarMessage: '',
-      apiData: null
+      total: 0,
+      username: '',
+      valuePerHour: 0
     };
 
     this.snackbarStyle = {
@@ -85,7 +90,7 @@ class AppComponent extends React.Component {
       return;
     }
 
-    axios.get(`https://www.wastedondestiny.com/api/?console=${ this.state.console }&user=${ this.state.username }`)
+    axios.get(`https://www.wastedondestiny.com/api/?console=${ this.state.selectedConsole }&user=${ this.state.username }`)
       .then(({ data }) => {
         if (!data || !data.Response) {
           this.showError({
@@ -94,15 +99,13 @@ class AppComponent extends React.Component {
           });
         } else {
           const hoursPlayed = (Number(data.Response.totalTimePlayed || 0) + Number(data.Response.totalTimeWasted || 0)) / (60 * 60);
-          const consoleName = this.state.console === '2' ? 'playstation' : 'xbox';
-          const console = data.Response[consoleName];
+          const consoleName = this.CONSOLES[this.state.selectedConsole % 2];
+          const otherConsoleName = this.CONSOLES[(this.state.selectedConsole + 1) % 2];
 
           this.setState({
             apiData: {
-              icon: `https://www.bungie.net${ console.iconPath }`,
-              displayName: console.displayName,
-              clan: console.clan ? `${ console.clan.name } [${ console.clan.tag }]` : null,
-              consoleName
+              primary: this.decorateConsoleResults(data.Response, consoleName),
+              secondary: this.decorateConsoleResults(data.Response, otherConsoleName)
             },
             isLoading: false,
             total: this.currencyValue(total),
@@ -117,6 +120,19 @@ class AppComponent extends React.Component {
           snackbarMessage: err.message
         });
       });
+  }
+
+  decorateConsoleResults(responseData, consoleName) {
+    const consoleData = responseData[consoleName];
+
+    if (!consoleData) return null;
+
+    return {
+      icon: `https://www.bungie.net${ consoleData.iconPath }`,
+      displayName: consoleData.displayName,
+      clan: consoleData.clan ? `${ consoleData.clan.name } [${ consoleData.clan.tag }]` : null,
+      consoleName
+    };
   }
 
   handleCurrencyClick(pricing, activeCurrency) {
@@ -139,6 +155,10 @@ class AppComponent extends React.Component {
     this.setState(updated);
   }
 
+  handleConsoleChange(expanded) {
+    this.setState({ consoleSelectorExpanded: expanded });
+  }
+
   clearValuePerHourSection() {
     this.setState({
       valuePerHour: null
@@ -149,17 +169,34 @@ class AppComponent extends React.Component {
     let valuePerHourSection;
 
     if (this.state.valuePerHour) {
+      let classes = classNames({
+        'card-header--half': this.state.apiData.secondary
+      });
+      let otherCardHeader;
+
+      if (this.state.apiData.secondary) {
+        otherCardHeader = (
+          <CardHeader
+            className={ classes }
+            title={ this.state.apiData.secondary.displayName }
+            subtitle={ this.state.apiData.secondary.clan }
+            avatar={ this.state.apiData.secondary.icon } />
+        );
+      }
+
       valuePerHourSection = (
         <div>
-          <Card className="card">
+          <Card className="card" onExpandChange={ this.handleConsoleChange.bind(this) }>
             <CardHeader
-              title={ this.state.apiData.displayName }
-              subtitle={ this.state.apiData.clan }
-              avatar={ this.state.apiData.icon } />
+              className={ classes }
+              title={ this.state.apiData.primary.displayName }
+              subtitle={ this.state.apiData.primary.clan }
+              avatar={ this.state.apiData.primary.icon } />
+            { otherCardHeader }
             <CardTitle title={ `You’ve spent a total of ${ this.state.total }, which equates to ${ this.state.valuePerHour } per hour playing Destiny.` } />
             <Comparisons comparisons={ this.state.pricing.comparisons } />
             <CardText>
-              <a href={ `https://www.wastedondestiny.com/${ this.state.apiData.consoleName }/${ this.state.apiData.displayName }` } target="_blank">
+              <a href={ `https://www.wastedondestiny.com/${ this.state.apiData.primary.consoleName }/${ this.state.apiData.primary.displayName }` } target="_blank">
                 Click here
               </a> to see your number of hours on <a href="https://www.wastedondestiny.com" target="_blank">wastedondestiny.com</a>.
             </CardText>
@@ -284,8 +321,8 @@ class AppComponent extends React.Component {
           <CardText>
             <div className="form-section">
               <RadioButtonGroup
-                name="console"
-                onChange={ (e, val) => { this.setState({ console: val, valuePerHour: null }) } }>
+                name="selectedConsole"
+                onChange={ (e, val) => { this.setState({ selectedConsole: Number(val), valuePerHour: null }) } }>
                 <RadioButton value="2" label="PS4" />
                 <RadioButton value="1" label="XBOX" />
               </RadioButtonGroup>
@@ -302,7 +339,7 @@ class AppComponent extends React.Component {
 
           <CardActions>
             <RaisedButton
-              disabled={ !this.state.console || !this.state.username }
+              disabled={ !this.state.selectedConsole || !this.state.username }
               label="Calculate"
               primary={ true }
               fullWidth={ true }
