@@ -18,6 +18,9 @@ export default {
 		}, {
 			title: 'Renting the latest blockbuster for home viewing (streaming)',
 			approximateCostPerHour: '£1.60'
+		}, {
+			title: 'To see the London Symphony Orchestra play a two hour concert',
+			approximateCostPerHour: '£21'
 		}]
 	},
 
@@ -37,6 +40,12 @@ export default {
 		}, {
 			title: 'Buying tickets to go see an MLB game',
 			approximateCostPerHour: '$12.99'
+		}, {
+			title: 'Going to the Magic Kingdom in summer for the 14 hours the park is open (plus food)',
+			approximateCostPerHour: '$9.43'
+		}, {
+			title: 'Taking a Carnival cruise from Miami to the Bahamas (plus drinks and excursion costs and fake Cuban cigars)',
+			approximateCostPerHour: '$4.16'
 		}]
 	},
 
