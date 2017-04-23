@@ -101,6 +101,14 @@ class AppComponent extends React.Component {
           const hoursPlayed = (Number(data.Response.totalTimePlayed || 0) + Number(data.Response.totalTimeWasted || 0)) / (60 * 60);
           const consoleName = this.CONSOLES[this.state.selectedConsole % 2];
           const otherConsoleName = this.CONSOLES[(this.state.selectedConsole + 1) % 2];
+          const valuePerHour = total / hoursPlayed;
+
+          if ((isNaN(valuePerHour) || valuePerHour === Infinity) && Raven && Raven.captureMessage) {
+            Raven.captureMessage('valuePerHour isNaN', {
+              extra: { total, hoursPlayed, consoleName, valuePerHour, username: this.state.username },
+              level: 'info' // one of 'info', 'warning', or 'error'
+            });
+          }
 
           this.setState({
             apiData: {
@@ -109,7 +117,7 @@ class AppComponent extends React.Component {
             },
             isLoading: false,
             total: this.currencyValue(total),
-            valuePerHour: this.currencyValue(total / hoursPlayed)
+            valuePerHour: this.currencyValue(valuePerHour)
           });
 
           window.scrollTo(0, 0);
