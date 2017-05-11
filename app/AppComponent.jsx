@@ -217,13 +217,6 @@ class AppComponent extends React.Component {
 
     return (
       <div>
-        <header>
-          <h1>Destiny Return on Investment Calculator</h1>
-          <p>
-            Ever wondered how much value you&rsquo;ve gotten out of your time playing Destiny? Now you can find out.
-          </p>
-        </header>
-
         { valuePerHourSection }
 
         <Card className="card">
@@ -360,13 +353,6 @@ class AppComponent extends React.Component {
             open={ !!this.state.snackbarMessage }
             message={ this.state.snackbarMessage }
             autoHideDuration={ 4000 } />
-
-        <footer>
-          <small>
-            <p>Massive props to <a href="https://www.wastedondestiny.com">Wasted On Destiny</a> for providing an API to use for this.</p>
-            <p>Cobbled together and maintained by <a href="http://remy.bach.me.uk">Rémy Bach</a></p>
-          </small>
-        </footer>
 
         <Loader isLoading={ this.state.isLoading } />
 

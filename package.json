@@ -10,8 +10,8 @@
     "prod": "npm run webpack_prod",
     "start": "webpack --progress --colors"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Rémy Bach",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.16.1",
     "classnames": "^2.2.5",
